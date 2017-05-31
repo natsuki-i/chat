@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import {
     Table,
     TableBody,
@@ -7,16 +8,14 @@ import {
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
+import { Message } from './reducer';
+import { State } from './../reducer';
 
 interface Props {
-    messages: {
-        id: number;
-        name: string;
-        text: string;
-    }[];
+    messages: Message[]
 }
 
-export default function Log(props: Props)
+function Log(props: Props)
 {
     let items = props.messages.map((message) => {
         return (
@@ -40,3 +39,11 @@ export default function Log(props: Props)
         </Table>
     );
 }
+
+function mapStateToProps(state: State) : Props {
+    return {
+        messages: state.log
+    };
+}
+
+export default connect<Props, {}, {}>(mapStateToProps)(Log)
