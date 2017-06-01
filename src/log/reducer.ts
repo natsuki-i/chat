@@ -12,6 +12,7 @@ const initialState: State = [];
 
 export const reducer = handleActions<State, Message>({
     ["APPEND_LOG"]: (state: State, action: Action<Message>): State => {
-        return [...state, action.payload];
+        let message = {...action.payload, id: (action.payload.id || state.length)}
+        return [...state, message];
     }
 }, initialState);

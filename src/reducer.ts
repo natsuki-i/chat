@@ -1,4 +1,5 @@
 import { createStore, combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 import * as log from './log/reducer';
 
 export interface State {
@@ -6,5 +7,6 @@ export interface State {
 }
 
 export default createStore(combineReducers<State>({
-    log: log.reducer
+    log: log.reducer,
+    form: formReducer,
 }))
