@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Field, FormProps, reduxForm } from 'redux-form';
 import TextField from 'material-ui/TextField';
-import { append as appendLog } from '../log/actions';
+import { send } from '../socket/actions';
 
 interface Message {
     message: string
@@ -31,6 +31,6 @@ const renderTextField = (props: any) => {
 
 export default reduxForm<Message, Props, Message>({
     form: 'input',
-    onSubmit: (values, dispatch, props) => dispatch(appendLog(null, "no name", values.message)),
+    onSubmit: (values, dispatch, props) => dispatch(send("no name", values.message)),
     onSubmitSuccess: (result, dispatch, props) => props.reset(),
 })(Input)
